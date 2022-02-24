@@ -5,6 +5,10 @@
 /.pnp
 .pnp.js
 
+# Webstorm
+.idea
+.git
+
 # testing
 /coverage
 
