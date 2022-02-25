@@ -1,9 +1,15 @@
 import PokeItem from "./PokeItem";
 
 const PokeList = () => {
+
+    const pokemon = ["pikachu", "bisasam", "taubsi"];
+    const pokeItems = pokemon.map(pokeItem => {
+        return <PokeItem/>
+    })
+
     return (
         <ul>
-            <PokeItem/>
+            {pokeItems}
         </ul>
     );
 };

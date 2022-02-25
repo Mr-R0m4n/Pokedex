@@ -31,8 +31,6 @@ const Form = () => {
                     <option value={'ice'}>Ice</option>
                     <option value={'fairy'}>Fairy</option>
                 </select>
-            </form>
-            <form>
                 <label>Secondary Type:</label>
                 <select name={'filter'}>
                     <option value={'none'}>None</option>

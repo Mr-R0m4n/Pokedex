@@ -1,6 +1,8 @@
+import css from './Card.module.css'
+
 const Card = (props) => {
     return (
-        <section>{props.children}</section>
+        <div className={css.card}>{props.children}</div>
     );
 };
 

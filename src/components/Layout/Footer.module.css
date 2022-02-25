@@ -1,0 +1,17 @@
+.footer {
+    background: #E35335;
+    color: #fff;
+    padding: 0 30px;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%
+;
+}
+
+.footer > p {
+    margin: 0;
+    font-weight: bolder;
+    font-size: 2rem;
+}
