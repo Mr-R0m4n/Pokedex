@@ -1,4 +1,4 @@
-import {Fragment} from "react";
+import css from './Form.module.css'
 
 const Form = () => {
     const onSearchHandler = (event) => {
@@ -6,13 +6,13 @@ const Form = () => {
     };
 
     return (
-        <Fragment>
-            <form onSubmit={onSearchHandler}>
+        <aside className={css.form}>
+            <form className={css.search} onSubmit={onSearchHandler}>
                 <label>Search:</label>
                 <input name={'search'} type={'search'}/>
                 <button type={'submit'}>Go</button>
             </form>
-            <form>
+            <form className={css.filter}>
                 <label>Primary Type:</label>
                 <select name={'filter'}>
                     <option value={'rock'}>Rock</option>
@@ -51,7 +51,7 @@ const Form = () => {
                     <option value={'fairy'}>Fairy</option>
                 </select>
             </form>
-        </Fragment>
+        </aside>
     );
 };
 

@@ -4,7 +4,7 @@ const PokeList = () => {
 
     const pokemon = ["pikachu", "bisasam", "taubsi"];
     const pokeItems = pokemon.map(pokeItem => {
-        return <PokeItem/>
+        return <PokeItem key={Math.random().toString()}/>
     })
 
     return (

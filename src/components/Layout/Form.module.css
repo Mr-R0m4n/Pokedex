@@ -1,0 +1,63 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    height: 50px;
+    /*font-weight: bolder;*/
+}
+
+.search {
+
+}
+
+.search > label {
+    margin: 10px;
+    font-size: 20px;
+}
+
+.search > input {
+    height: 40px;
+    width: 500px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.search >button {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid black;
+    margin: 0 10px;
+    background-color: #fff;
+}
+
+.search > button:hover {
+    background-color: #eee;
+}
+
+.search > button:active {
+    background-color: #ccc;
+}
+
+.filter {
+
+}
+
+.filter > label {
+    margin: 0 10px 0 50px;
+    font-size: 20px;
+}
+
+.filter > select {
+    height: 40px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.filter > select:focus {
+    border: 2px solid black;
+}
