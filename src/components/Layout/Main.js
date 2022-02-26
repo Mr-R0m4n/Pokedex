@@ -2,10 +2,10 @@ import PokeList from "../Pokemon/PokeList";
 
 import css from './Main.module.css'
 
-const Main = () => {
+const Main = (props) => {
     return (
         <main className={css.main}>
-            <PokeList/>
+            <PokeList pokedata={props.pokedata}/>
         </main>
     );
 };

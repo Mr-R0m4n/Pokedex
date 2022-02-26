@@ -9,31 +9,46 @@ function App() {
     const [pokemon, setPokemon] = useState([]);
 
     const fetchPokemonHandler = async () => {
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=3');
+
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=9');
         if (!response.ok) {
             throw new Error('Something went wrong');
         }
 
         const data = await response.json();
-        console.log(data);
-        let loadedPokemon = [];
-        for (let id = 0; id <= 2; id++) {
-            loadedPokemon.push({
-                name: data.results[id].name,
-                url: data.results[id].url
-            });
-        }
-        setPokemon(loadedPokemon);
-        console.log(pokemon);
-    };
+        const results = data.results;
 
+        let pokeArray = [];
+
+        for (const key in results) {
+            const detailResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${(+key) + 1}/`);
+            if (!detailResponse.ok) {
+                throw new Error('Something went wrong');
+            }
+            const result = await detailResponse.json();
+
+            let data = {
+                id: result.id,
+                name: result.name,
+                height: (result.height / 10),
+                weight: (result.weight / 10),
+                sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${(+key) + 1}.svg`,
+                primary: result.types[0].type.name,
+                secondary: !result.types[1] ? null : result.types[1].type.name
+            }
+            console.log(data)
+            pokeArray.push(data);
+        }
+        setPokemon(pokeArray)
+        console.log(pokemon)
+    };
 
     return (
         <Fragment>
             <Header/>
             <button type={'button'} onClick={fetchPokemonHandler}>Catch them all!</button>
             <Form/>
-            <Main/>
+            <Main pokedata={pokemon}/>
             <Footer/>
         </Fragment>
     );

@@ -1,10 +1,18 @@
 import PokeItem from "./PokeItem";
 
-const PokeList = () => {
+const PokeList = (props) => {
 
-    const pokemon = ["pikachu", "bisasam", "taubsi"];
-    const pokeItems = pokemon.map(pokeItem => {
-        return <PokeItem key={Math.random().toString()}/>
+    const pokeItems = props.pokedata.map(pokeItem => {
+        return (
+            <PokeItem
+                key={pokeItem.id}
+                sprite={pokeItem.sprite}
+                name={pokeItem.name}
+                height={pokeItem.height}
+                weight={pokeItem.weight}
+                primaryType={pokeItem.primary}
+            />
+        )
     })
 
     return (
