@@ -1,5 +1,7 @@
 import PokeItem from "./PokeItem";
 
+import css from './PokeList.module.css'
+
 const PokeList = (props) => {
 
     const pokeItems = props.pokedata.map(pokeItem => {
@@ -16,7 +18,7 @@ const PokeList = (props) => {
     })
 
     return (
-        <ul>
+        <ul className={css.list}>
             {pokeItems}
         </ul>
     );
