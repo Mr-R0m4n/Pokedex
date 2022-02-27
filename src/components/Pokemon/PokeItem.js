@@ -5,11 +5,13 @@ import css from './PokeItem.module.css'
 const PokeItem = (props) => {
 
     return (
-        <li className={css.pokeItem}>
+        <li>
             <Card>
-                <img src={props.sprite} alt={props.name}/>
-                <h1>{props.name}</h1>
-                <p>{props.primaryType}</p>
+                <div className={css.pokeItem}>
+                    <img src={props.sprite} alt={props.name}/>
+                    <h1>{props.name}</h1>
+                    <p>{props.primaryType}</p>
+                </div>
             </Card>
         </li>
     );

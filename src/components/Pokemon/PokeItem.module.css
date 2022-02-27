@@ -1,3 +1,10 @@
-.pokeItem img{
-    height: 20vw;
+.pokeItem {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokeItem > img {
+    height: 80%;
 }
