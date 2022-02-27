@@ -3,8 +3,9 @@ import Card from "../UI/Card";
 import css from './PokeItem.module.css'
 
 const PokeItem = (props) => {
+
     return (
-        <li className={css}>
+        <li className={css.pokeItem}>
             <Card>
                 <img src={props.sprite} alt={props.name}/>
                 <h1>{props.name}</h1>

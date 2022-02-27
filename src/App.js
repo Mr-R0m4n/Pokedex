@@ -36,19 +36,17 @@ function App() {
                 primary: result.types[0].type.name,
                 secondary: !result.types[1] ? null : result.types[1].type.name
             }
-            console.log(data)
             pokeArray.push(data);
         }
         setPokemon(pokeArray)
-        console.log(pokemon)
     };
 
     return (
         <Fragment>
             <Header/>
-            <button type={'button'} onClick={fetchPokemonHandler}>Catch them all!</button>
             <Form/>
             <Main pokedata={pokemon}/>
+            <button type={'button'} onClick={fetchPokemonHandler}>Catch them all!</button>
             <Footer/>
         </Fragment>
     );

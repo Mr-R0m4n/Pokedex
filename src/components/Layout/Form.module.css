@@ -4,11 +4,7 @@
     justify-content: center;
     flex-direction: row;
     height: 50px;
-    /*font-weight: bolder;*/
-}
-
-.search {
-
+    padding: 20px 0;
 }
 
 .search > label {
@@ -60,4 +56,54 @@
 
 .filter > select:focus {
     border: 2px solid black;
+}
+
+@media (max-width: 1450px) {
+    .form{
+        flex-direction: column;
+        height: 100px;
+    }
+
+    .search {
+        margin-bottom: 10px;
+    }
+
+    .search > label {
+        margin: 10px;
+        font-size: 20px;
+    }
+
+    .search > input {
+        width: 600px;
+    }
+
+    .filter {
+        width: 740px;
+    }
+
+    .filter > label {
+        margin: 0 10px 0 10px;
+    }
+}
+
+@media (max-width: 740px) {
+    .form{
+        flex-direction: column;
+        height: 200px;
+    }
+
+    .search > input {
+        width: 55vw;
+    }
+
+    .filter {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filter > select {
+        margin-bottom: 10px;
+        width: 50vw;
+    }
 }

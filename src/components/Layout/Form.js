@@ -15,7 +15,7 @@ const Form = () => {
             <form className={css.filter}>
                 <label>Primary Type:</label>
                 <select name={'filter'}>
-                    <option value={''}></option>
+                    <option value={'all'}>All</option>
                     <option value={'rock'}>Rock</option>
                     <option value={'fire'}>Fire</option>
                     <option value={'water'}>Water</option>
@@ -34,7 +34,7 @@ const Form = () => {
                 </select>
                 <label>Secondary Type:</label>
                 <select name={'filter'}>
-                    <option value={''}></option>
+                    <option value={'all'}>All</option>
                     <option value={'none'}>None</option>
                     <option value={'rock'}>Rock</option>
                     <option value={'fire'}>Fire</option>

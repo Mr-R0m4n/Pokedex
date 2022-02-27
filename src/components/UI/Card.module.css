@@ -3,11 +3,5 @@
     border-radius: 1rem;
     padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-    height: 800px;
-    width: 50%;
-    margin: 100px auto;
-}
-
-.card > img {
-    height: 80%;
+    margin-bottom: min(20px, 5vw);
 }
