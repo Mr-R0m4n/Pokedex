@@ -6,6 +6,7 @@ import Form from "./components/Layout/Form";
 
 function App() {
     const [pokemon, setPokemon] = useState([]);
+    const [pokemonFilter, setPokemonFilter] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState();
 
@@ -35,7 +36,7 @@ function App() {
                 throw new Error('Oooops Something went wrong...');
             }
             const result = await detailResponse.json();
-            console.log(result);
+            //console.log(result);
 
             let data = {
                 id: result.id,
@@ -50,13 +51,21 @@ function App() {
         }
         setIsLoading(false);
         setPokemon(pokeArray);
-        console.log(pokeArray);
+        //console.log(pokeArray);
     };
+
+    const filter = (enteredFilter) => {
+        setPokemonFilter(enteredFilter)
+        console.log(pokemonFilter)
+    }
 
     return (
         <Fragment>
             <Header/>
-            <Form pokedata={pokemon}/>
+            <Form
+                pokedata={pokemon}
+                getFilter={filter}
+            />
             <Main
                 pokedata={pokemon}
                 loading={isLoading}

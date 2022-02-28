@@ -1,41 +1,28 @@
 import css from './Form.module.css';
-import {useCallback, useEffect, useState} from "react";
+import {useEffect, useRef} from "react";
 
 const Form = (props) => {
-    const [filteredPokemon, setFilteredPokemon] = useState([]);
-    const [primaryType, setPrimaryType] = useState();
-
-    const onSearchHandler = (event) => {
-        event.preventDefault();
-    };
-
-    const onPrimaryChangeHandler = (event) => {
-        setPrimaryType(event.target.value);
-    };
+    const primaryTypeRef = useRef('');
 
     useEffect(() => {
-        pokemonFilter(props.pokedata);
-        console.log(filteredPokemon);
-    }, [primaryType, props.pokedata]);
+        props.getFilter(primaryTypeRef.current.value)
+    },[primaryTypeRef.current.value])
 
-    const pokemonFilter = useCallback((pokemons) => {
-        if (primaryType) {
-            let newPokeArray = pokemons.filter(pokemon => pokemon.primary === primaryType);
-            setFilteredPokemon(newPokeArray);
-        }
-    },[primaryType]);
+    const primaryFilterHandler = () => {
+        props.getFilter(primaryTypeRef.current.value)
+    }
 
     return (
         <aside className={css.form}>
-            <form className={css.search} onSubmit={onSearchHandler}>
+            <form className={css.search}>
                 <label>Search:</label>
                 <input name={'search'} type={'search'}/>
                 <button type={'submit'}>Go</button>
             </form>
-            <form onChange={onPrimaryChangeHandler} className={css.filter}>
+            <form className={css.filter}>
                 <label>Primary Type:</label>
-                <select name={'filter'}>
-                    <option defaultValue={'all'}>All</option>
+                <select ref={primaryTypeRef} onChange={primaryFilterHandler} name={'filter'}>
+                    <option value={'all'}>All</option>
                     <option value={'bug'}>Bug</option>
                     <option value={'dragon'}>Dragon</option>
                     <option value={'electric'}>Electric</option>
