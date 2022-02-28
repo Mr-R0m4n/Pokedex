@@ -8,55 +8,90 @@ const PokeItem = (props) => {
     const [secondaryColor, setSecondaryColor] = useState('#fff');
 
     useEffect(() => {
-        const setPrimaryColorHandler = () => {
-            switch (props.primaryType) {
-                case 'Grass':
-                    setPrimaryColor('#66ff66');
+        const setColorHandler = (type, colorFunction) => {
+            switch (type) {
+                case 'Bug':
+                    colorFunction('#29a329');
                     break;
-                case 'Water':
-                    setPrimaryColor('#33ccff');
+                case 'Dragon':
+                    colorFunction('#6666ff');
+                    break;
+                case 'Electric':
+                    colorFunction('#ffff66');
+                    break;
+                case 'Fairy':
+                    colorFunction('#ff66ff');
+                    break;
+                case 'Fighting':
+                    colorFunction('#666666');
                     break;
                 case 'Fire':
-                    setPrimaryColor('#ff9966');
+                    colorFunction('#ff6666');
+                    break;
+                case 'Flying':
+                    colorFunction('#e6e6e6');
+                    break;
+                case 'Ghost':
+                    colorFunction('#bfbfbf');
+                    break;
+                case 'Grass':
+                    colorFunction('#66ff66');
+                    break;
+                case 'Ground':
+                    colorFunction('#ff9933');
+                    break;
+                case 'Ice':
+                    colorFunction('#66ffff');
+                    break;
+                case 'Normal':
+                    colorFunction('#fff');
+                    break;
+                case 'Poison':
+                    colorFunction('#d966ff');
+                    break;
+                case 'Psychic':
+                    colorFunction('#8c66ff');
+                    break;
+                case 'Rock':
+                    colorFunction('#808080');
+                    break;
+                case 'Steel':
+                    colorFunction('#777777');
+                    break;
+                case 'Water':
+                    colorFunction('#66d9ff');
                     break;
                 default:
-                    setPrimaryColor('#fff');
+                    colorFunction(`${primaryColor}`);
             }
         }
 
-        const setSecondaryColorHandler = () => {
-            switch (props.secondaryType) {
-                case 'Grass':
-                    setSecondaryColor('#66ff66');
-                    break;
-                case 'Water':
-                    setSecondaryColor('#33ccff');
-                    break;
-                case 'Fire':
-                    setSecondaryColor('#ff9966');
-                    break;
-                case 'Poison':
-                    setSecondaryColor('#cc66ff');
-                    break;
-                case 'Flying':
-                    setSecondaryColor('#fff');
-                    break;
-                default:
-                    setSecondaryColor(`${primaryColor}`);
-            }
-        }
-        setPrimaryColorHandler();
-        setSecondaryColorHandler();
+        setColorHandler(props.secondaryType, setSecondaryColor)
+        setColorHandler(props.primaryType, setPrimaryColor)
     },[primaryColor, props.primaryType, props.secondaryType])
+
+    let typeOutput;
+
+    if(props.secondaryType.length > 0){
+        typeOutput= <div>
+                        <h2>{props.primaryType}</h2>
+                        <h2>/</h2>
+                        <h2>{props.secondaryType}</h2>
+                    </div>
+    }
+    else {
+        typeOutput = <div>
+                        <h2>{props.primaryType}</h2>
+                    </div>
+    }
 
     return (
         <li>
             <Card>
-                <div style={{backgroundImage: `linear-gradient(to right, ${primaryColor} 50%, ${secondaryColor} 50%`}} className={css.pokeItem}>
+                <div style={{backgroundImage: `linear-gradient(to right, ${primaryColor} 49.5%, ${secondaryColor} 49.5%`}} className={css.pokeItem}>
                     <img src={props.sprite} alt={props.name}/>
                     <h1>{props.name}</h1>
-                    <h2>{props.primaryType}</h2>
-                    <h2>{props.secondaryType}</h2>
+                    {typeOutput}
                 </div>
             </Card>
         </li>

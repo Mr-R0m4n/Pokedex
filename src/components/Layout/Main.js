@@ -1,6 +1,6 @@
 import PokeList from "../Pokemon/PokeList";
 
-import css from './Main.module.css'
+import css from './Main.module.css';
 import LoadingSpinner from "../UI/LoadingSpinner";
 import Error from "../UI/Error";
 

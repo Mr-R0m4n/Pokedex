@@ -1,7 +1,6 @@
 import {Fragment, useEffect, useState} from "react";
 import Header from './components/Layout/Header';
 import Main from './components/Layout/Main';
-import Footer from './components/Layout/Footer';
 import './App.css';
 import Form from "./components/Layout/Form";
 
@@ -18,7 +17,7 @@ function App() {
 
     const fetchPokemonData = async () => {
         setIsLoading(true);
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=9');
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50');
         if (!response.ok) {
             setIsLoading(false);
             throw new Error('Oooops Something went wrong...');
@@ -54,18 +53,15 @@ function App() {
         console.log(pokeArray);
     };
 
-
-
     return (
         <Fragment>
             <Header/>
-            <Form/>
+            <Form pokedata={pokemon}/>
             <Main
                 pokedata={pokemon}
                 loading={isLoading}
                 error={httpError}
             />
-            <Footer/>
         </Fragment>
     );
 }
