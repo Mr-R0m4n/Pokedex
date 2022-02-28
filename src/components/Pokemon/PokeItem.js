@@ -47,7 +47,7 @@ const PokeItem = (props) => {
         }
         setPrimaryColorHandler();
         setSecondaryColorHandler();
-    },[props.primaryType])
+    },[primaryColor, props.primaryType, props.secondaryType])
 
     return (
         <li>
