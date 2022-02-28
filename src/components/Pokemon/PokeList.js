@@ -9,10 +9,11 @@ const PokeList = (props) => {
             <PokeItem
                 key={pokeItem.id}
                 sprite={pokeItem.sprite}
-                name={pokeItem.name}
+                name={(pokeItem.name).charAt(0).toUpperCase() + (pokeItem.name).slice(1)}
                 height={pokeItem.height}
                 weight={pokeItem.weight}
-                primaryType={pokeItem.primary}
+                primaryType={(pokeItem.primary).charAt(0).toUpperCase() + (pokeItem.primary).slice(1)}
+                secondaryType={pokeItem.secondary ? (pokeItem.secondary).charAt(0).toUpperCase() + (pokeItem.secondary).slice(1) : ''}
             />
         )
     })
