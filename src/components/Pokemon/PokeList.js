@@ -12,8 +12,8 @@ const PokeList = (props) => {
     }, [props.filter, props.pokedata, props.keyword]);
 
     const filterPokedata = (pokemons, pokemonFilter, keyword) => {
-        console.log(keyword);
         let filteredPokemon;
+        let searchedPokemon;
         if (pokemonFilter.primary === 'all' && pokemonFilter.secondary === 'all') {
             filteredPokemon = pokemons;
         } else if (pokemonFilter.primary !== 'all' && pokemonFilter.secondary === 'all') {
@@ -31,7 +31,8 @@ const PokeList = (props) => {
                 });
 
         }
-        setFilteredPokedata(filteredPokemon);
+        searchedPokemon = filteredPokemon.filter(pokemon => pokemon.name.includes(keyword));
+        setFilteredPokedata(searchedPokemon);
     };
 
     const pokeItems = filteredPokedata.map(pokeItem => {
