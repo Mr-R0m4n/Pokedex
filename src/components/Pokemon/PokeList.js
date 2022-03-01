@@ -2,31 +2,32 @@ import PokeItem from "./PokeItem";
 
 import css from './PokeList.module.css';
 import {useEffect, useState} from "react";
-import NotAvailable from "../UI/NotAvailable";
+import NoMatch from "../UI/NoMatch";
 
 const PokeList = (props) => {
     const [filteredPokedata, setFilteredPokedata] = useState([]);
 
     useEffect(() => {
-        filterPokedata(props.pokedata, props.filter);
-    }, [props.filter, props.pokedata]);
+        filterPokedata(props.pokedata, props.filter, props.keyword);
+    }, [props.filter, props.pokedata, props.keyword]);
 
-    const filterPokedata = (pokemons, pokemonfilter) => {
-        let filteredPokemon = [];
-        if (pokemonfilter.primary === 'all' && pokemonfilter.secondary === 'all') {
+    const filterPokedata = (pokemons, pokemonFilter, keyword) => {
+        console.log(keyword);
+        let filteredPokemon;
+        if (pokemonFilter.primary === 'all' && pokemonFilter.secondary === 'all') {
             filteredPokemon = pokemons;
-        } else if (pokemonfilter.primary !== 'all' && pokemonfilter.secondary === 'all') {
+        } else if (pokemonFilter.primary !== 'all' && pokemonFilter.secondary === 'all') {
             filteredPokemon = pokemons.filter(
-                pokemon => pokemon.types.primary === pokemonfilter.primary
+                pokemon => pokemon.types.primary === pokemonFilter.primary
             );
-        } else if (pokemonfilter.primary === 'all' && pokemonfilter.secondary !== 'all') {
+        } else if (pokemonFilter.primary === 'all' && pokemonFilter.secondary !== 'all') {
             filteredPokemon = pokemons.filter(
-                pokemon => pokemon.types.secondary === pokemonfilter.secondary
+                pokemon => pokemon.types.secondary === pokemonFilter.secondary
             );
         } else {
             filteredPokemon = pokemons.filter(
                 pokemon => {
-                    return JSON.stringify(pokemon.types) === JSON.stringify(pokemonfilter)
+                    return JSON.stringify(pokemon.types) === JSON.stringify(pokemonFilter);
                 });
 
         }
@@ -49,7 +50,7 @@ const PokeList = (props) => {
 
     return (
         <ul className={css.list}>
-            {!filteredPokedata.length < 1 ? pokeItems : <NotAvailable/>}
+            {!filteredPokedata.length < 1 ? pokeItems : <NoMatch/>}
         </ul>
     );
 };

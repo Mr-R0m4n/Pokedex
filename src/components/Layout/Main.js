@@ -28,6 +28,7 @@ const Main = (props) => {
             <PokeList
                 pokedata={props.pokedata}
                 filter={props.filter}
+                keyword={props.keyword}
             />
         </main>
     );

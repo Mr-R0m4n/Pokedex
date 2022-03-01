@@ -5,35 +5,41 @@ const Form = (props) => {
     const [filter, setFilter] = useState({
         primary: 'all',
         secondary: 'all'
-    })
+    });
+
+    const [keyword, setKeyword] = useState('');
 
     useEffect(() => {
-        props.getFilter(filter)
-    },)
+        props.getFilter(filter);
+        props.getKeyword(keyword);
+    },);
 
     const primaryFilterHandler = (event) => {
-        const selectedPrimaryFilter = event.target.value
+        const selectedPrimaryFilter = event.target.value;
         setFilter(prevState => ({
             primary: selectedPrimaryFilter,
             secondary: prevState.secondary,
         }));
-    }
+    };
 
     const secondaryFilterHandler = (event) => {
-        const selectedSecondaryFilter = event.target.value
+        const selectedSecondaryFilter = event.target.value;
         setFilter(prevState => ({
             primary: prevState.primary,
             secondary: selectedSecondaryFilter
         }));
-    }
+    };
+
+    const searchHandler = (event) => {
+        setKeyword(event.target.value);
+    };
 
     return (
         <aside className={css.form}>
-            <form className={css.search}>
+            <div className={css.search}>
                 <label>Search:</label>
-                <input name={'search'} type={'search'}/>
-                <button type={'submit'}>Go</button>
-            </form>
+                <input onChange={searchHandler} name={'search'} type={'search'}/>
+            </div>
             <div className={css.filter}>
                 <label>Primary Type:</label>
                 <select

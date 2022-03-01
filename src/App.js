@@ -1,4 +1,4 @@
-import {Fragment, useEffect, useState} from "react";
+import {Fragment, useCallback, useEffect, useState} from "react";
 import Header from './components/Layout/Header';
 import Main from './components/Layout/Main';
 import './App.css';
@@ -7,8 +7,11 @@ import Form from "./components/Layout/Form";
 function App() {
     const [pokemon, setPokemon] = useState([]);
     const [pokemonFilter, setPokemonFilter] = useState({});
+    const [pokemonSearch, setPokemonSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState();
+    const [y, setY] = useState(window.scrollY);
+    const [opacity, setOpacity] = useState(1);
 
     useEffect(() => {
         fetchPokemonData().catch((error) => {
@@ -16,9 +19,25 @@ function App() {
         });
     }, []);
 
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            window.onscroll = () => {
+                const scrollPos = window.scrollY;
+                if (scrollPos > 300) {
+                    setOpacity(prevState => prevState-0.1)
+                    console.log(opacity)
+                }
+                if (scrollPos<100) {
+                    setOpacity(prevState => prevState+0.1)
+                    console.log(opacity)
+                }
+            }
+        }
+    });
+
     const fetchPokemonData = async () => {
         setIsLoading(true);
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50');
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
         if (!response.ok) {
             setIsLoading(false);
             throw new Error('Oooops Something went wrong...');
@@ -44,7 +63,7 @@ function App() {
                 height: (result.height / 10),
                 weight: (result.weight / 10),
                 sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${(+key) + 1}.svg`,
-                types : {
+                types: {
                     primary: result.types[0].type.name,
                     secondary: !result.types[1] ? 'none' : result.types[1].type.name
                 }
@@ -57,18 +76,24 @@ function App() {
     };
 
     const filter = (enteredFilter) => {
-        setPokemonFilter(enteredFilter)
-    }
+        setPokemonFilter(enteredFilter);
+    };
+
+    const search = (enteredSearch) => {
+        setPokemonSearch(enteredSearch);
+    };
 
     return (
         <Fragment>
             <Header/>
             <Form
                 getFilter={filter}
+                getKeyword={search}
             />
             <Main
                 pokedata={pokemon}
                 filter={pokemonFilter}
+                keyword={pokemonSearch}
                 loading={isLoading}
                 error={httpError}
             />

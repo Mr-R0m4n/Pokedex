@@ -8,7 +8,7 @@
 }
 
 .pokeItem > img {
-    width: 80%;
+    width: 30%;
 }
 
 .pokeItem >div {
@@ -22,9 +22,13 @@
 }
 
 @media (max-width: 1450px) {
-
+    .pokeItem > img {
+        width: 40%;
+    }
 }
 
 @media (max-width: 740px) {
-
+    .pokeItem > img {
+        width: 80%;
+    }
 }
