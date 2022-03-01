@@ -5,7 +5,7 @@ const NoMatch = () => {
     return (
         <div className={classes.notAvailable}>
             <img src={pokeball} alt={'pokeball'}/>
-            <h1>No matches...</h1>
+            <h1>No matches found...</h1>
         </div>
     );
 };

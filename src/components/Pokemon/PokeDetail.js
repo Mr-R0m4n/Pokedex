@@ -9,7 +9,7 @@ const PokeDetail = () => {
             <p>POKESTUFF</p>
             <p>POKESTUFF</p>
         </Fragment>
-    )
-}
+    );
+};
 
 export default PokeDetail;

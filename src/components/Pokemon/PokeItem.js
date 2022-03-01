@@ -64,31 +64,32 @@ const PokeItem = (props) => {
                 default:
                     colorFunction(`${primaryColor}`);
             }
-        }
+        };
 
-        setColorHandler(props.secondaryType, setSecondaryColor)
-        setColorHandler(props.primaryType, setPrimaryColor)
-    },[primaryColor, props.primaryType, props.secondaryType])
+        setColorHandler(props.secondaryType, setSecondaryColor);
+        setColorHandler(props.primaryType, setPrimaryColor);
+    }, [primaryColor, props.primaryType, props.secondaryType]);
 
     let typeOutput;
 
-    if(props.secondaryType.length > 0){
-        typeOutput= <div>
-                        <h2>{props.primaryType}</h2>
-                        <h2>/</h2>
-                        <h2>{props.secondaryType}</h2>
-                    </div>
-    }
-    else {
+    if (props.secondaryType.length > 0) {
         typeOutput = <div>
-                        <h2>{props.primaryType}</h2>
-                    </div>
+            <h2>{props.primaryType}</h2>
+            <h2>/</h2>
+            <h2>{props.secondaryType}</h2>
+        </div>;
+    } else {
+        typeOutput = <div>
+            <h2>{props.primaryType}</h2>
+        </div>;
     }
 
     return (
         <li>
             <Card>
-                <div style={{backgroundImage: `linear-gradient(to right, ${primaryColor} 49.5%, ${secondaryColor} 49.5%`}} className={css.pokeItem}>
+                <div
+                    style={{backgroundImage: `linear-gradient(to right, ${primaryColor} 49.5%, ${secondaryColor} 49.5%`}}
+                    className={css.pokeItem}>
                     <img src={props.sprite} alt={props.name}/>
                     <h1>{props.name}</h1>
                     {typeOutput}

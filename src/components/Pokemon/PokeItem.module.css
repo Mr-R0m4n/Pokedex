@@ -22,13 +22,21 @@
 }
 
 @media (max-width: 1450px) {
+    .pokeItem {
+        padding: 2rem;
+    }
+
     .pokeItem > img {
         width: 40%;
     }
 }
 
 @media (max-width: 740px) {
+    .pokeItem {
+        padding: 1rem;
+    }
+
     .pokeItem > img {
-        width: 80%;
+        width: 70%;
     }
 }

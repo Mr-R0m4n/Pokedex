@@ -1,5 +1,5 @@
 .main {
-    padding: 170px 30px 100px 30px;
+    padding: 180px 30px 100px 30px;
 }
 
 @media (max-width: 1450px) {
@@ -10,6 +10,6 @@
 
 @media (max-width: 740px) {
     .main {
-        padding: 355px 30px 100px 30px;
+        padding: 240px 30px 100px 30px;
     }
 }

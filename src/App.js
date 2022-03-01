@@ -1,4 +1,4 @@
-import {Fragment, useCallback, useEffect, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import Header from './components/Layout/Header';
 import Main from './components/Layout/Main';
 import './App.css';
@@ -10,30 +10,12 @@ function App() {
     const [pokemonSearch, setPokemonSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState();
-    const [y, setY] = useState(window.scrollY);
-    const [opacity, setOpacity] = useState(1);
 
     useEffect(() => {
         fetchPokemonData().catch((error) => {
             setHttpError(error.message);
         });
     }, []);
-
-    useEffect(() => {
-        if (typeof window !== "undefined") {
-            window.onscroll = () => {
-                const scrollPos = window.scrollY;
-                if (scrollPos > 300) {
-                    setOpacity(prevState => prevState-0.1)
-                    console.log(opacity)
-                }
-                if (scrollPos<100) {
-                    setOpacity(prevState => prevState+0.1)
-                    console.log(opacity)
-                }
-            }
-        }
-    });
 
     const fetchPokemonData = async () => {
         setIsLoading(true);
