@@ -2,6 +2,7 @@ import PokeItem from "./PokeItem";
 
 import css from './PokeList.module.css';
 import {useEffect, useState} from "react";
+import NotAvailable from "../UI/NotAvailable";
 
 const PokeList = (props) => {
     const [filteredPokedata, setFilteredPokedata] = useState([]);
@@ -41,14 +42,14 @@ const PokeList = (props) => {
                 height={pokeItem.height}
                 weight={pokeItem.weight}
                 primaryType={(pokeItem.types.primary).charAt(0).toUpperCase() + (pokeItem.types.primary).slice(1)}
-                secondaryType={pokeItem.types.secondary ? (pokeItem.types.secondary).charAt(0).toUpperCase() + (pokeItem.types.secondary).slice(1) : ''}
+                secondaryType={pokeItem.types.secondary === 'none' ? '' : (pokeItem.types.secondary).charAt(0).toUpperCase() + (pokeItem.types.secondary).slice(1)}
             />
         );
     });
 
     return (
         <ul className={css.list}>
-            {pokeItems}
+            {!filteredPokedata.length < 1 ? pokeItems : <NotAvailable/>}
         </ul>
     );
 };
