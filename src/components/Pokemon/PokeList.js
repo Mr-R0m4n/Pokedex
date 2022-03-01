@@ -24,11 +24,13 @@ const PokeList = (props) => {
             );
         } else {
             filteredPokemon = pokemons.filter(
-                pokemon => JSON.stringify(pokemon.types) === JSON.stringify(pokemonfilter)
-            );
+                pokemon => {
+                    return JSON.stringify(pokemon.types) === JSON.stringify(pokemonfilter)
+                });
+
         }
         setFilteredPokedata(filteredPokemon);
-    }
+    };
 
     const pokeItems = filteredPokedata.map(pokeItem => {
         return (

@@ -46,7 +46,7 @@ function App() {
                 sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${(+key) + 1}.svg`,
                 types : {
                     primary: result.types[0].type.name,
-                    secondary: !result.types[1] ? null : result.types[1].type.name
+                    secondary: !result.types[1] ? 'none' : result.types[1].type.name
                 }
             };
             pokeArray.push(data);

@@ -22,8 +22,8 @@ const Form = (props) => {
     const secondaryFilterHandler = (event) => {
         const selectedSecondaryFilter = event.target.value
         setFilter(prevState => ({
-            secondary: selectedSecondaryFilter,
-            primary: prevState.primary
+            primary: prevState.primary,
+            secondary: selectedSecondaryFilter
         }));
     }
 
