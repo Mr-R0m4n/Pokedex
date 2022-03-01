@@ -6,7 +6,7 @@ import Form from "./components/Layout/Form";
 
 function App() {
     const [pokemon, setPokemon] = useState([]);
-    const [pokemonFilter, setPokemonFilter] = useState();
+    const [pokemonFilter, setPokemonFilter] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState();
 
@@ -44,8 +44,10 @@ function App() {
                 height: (result.height / 10),
                 weight: (result.weight / 10),
                 sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${(+key) + 1}.svg`,
-                primary: result.types[0].type.name,
-                secondary: !result.types[1] ? null : result.types[1].type.name
+                types : {
+                    primary: result.types[0].type.name,
+                    secondary: !result.types[1] ? null : result.types[1].type.name
+                }
             };
             pokeArray.push(data);
         }
@@ -56,18 +58,17 @@ function App() {
 
     const filter = (enteredFilter) => {
         setPokemonFilter(enteredFilter)
-        console.log(pokemonFilter)
     }
 
     return (
         <Fragment>
             <Header/>
             <Form
-                pokedata={pokemon}
                 getFilter={filter}
             />
             <Main
                 pokedata={pokemon}
+                filter={pokemonFilter}
                 loading={isLoading}
                 error={httpError}
             />

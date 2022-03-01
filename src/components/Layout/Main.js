@@ -25,7 +25,10 @@ const Main = (props) => {
 
     return (
         <main className={css.main}>
-            <PokeList pokedata={props.pokedata}/>
+            <PokeList
+                pokedata={props.pokedata}
+                filter={props.filter}
+            />
         </main>
     );
 };

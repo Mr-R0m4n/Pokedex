@@ -1,15 +1,30 @@
 import css from './Form.module.css';
-import {useEffect, useRef} from "react";
+import {useEffect, useState} from "react";
 
 const Form = (props) => {
-    const primaryTypeRef = useRef('');
+    const [filter, setFilter] = useState({
+        primary: 'all',
+        secondary: 'all'
+    })
 
     useEffect(() => {
-        props.getFilter(primaryTypeRef.current.value)
-    },[primaryTypeRef.current.value])
+        props.getFilter(filter)
+    },)
 
-    const primaryFilterHandler = () => {
-        props.getFilter(primaryTypeRef.current.value)
+    const primaryFilterHandler = (event) => {
+        const selectedPrimaryFilter = event.target.value
+        setFilter(prevState => ({
+            primary: selectedPrimaryFilter,
+            secondary: prevState.secondary,
+        }));
+    }
+
+    const secondaryFilterHandler = (event) => {
+        const selectedSecondaryFilter = event.target.value
+        setFilter(prevState => ({
+            secondary: selectedSecondaryFilter,
+            primary: prevState.primary
+        }));
     }
 
     return (
@@ -19,9 +34,12 @@ const Form = (props) => {
                 <input name={'search'} type={'search'}/>
                 <button type={'submit'}>Go</button>
             </form>
-            <form className={css.filter}>
+            <div className={css.filter}>
                 <label>Primary Type:</label>
-                <select ref={primaryTypeRef} onChange={primaryFilterHandler} name={'filter'}>
+                <select
+                    value={filter.primary}
+                    onChange={primaryFilterHandler}
+                >
                     <option value={'all'}>All</option>
                     <option value={'bug'}>Bug</option>
                     <option value={'dragon'}>Dragon</option>
@@ -40,8 +58,11 @@ const Form = (props) => {
                     <option value={'water'}>Water</option>
                 </select>
                 <label>Secondary Type:</label>
-                <select name={'filter'}>
-                    <option defaultValue={'all'}>All</option>
+                <select
+                    value={filter.secondary}
+                    onChange={secondaryFilterHandler}
+                >
+                    <option value={'all'}>All</option>
                     <option value={'none'}>None</option>
                     <option value={'bug'}>Bug</option>
                     <option value={'dragon'}>Dragon</option>
@@ -61,7 +82,7 @@ const Form = (props) => {
                     <option value={'steel'}>Fairy</option>
                     <option value={'water'}>Water</option>
                 </select>
-            </form>
+            </div>
         </aside>
     );
 };
