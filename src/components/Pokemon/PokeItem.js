@@ -88,6 +88,7 @@ const PokeItem = (props) => {
         <li>
             <Card>
                 <div
+                    onClick={props.showModal}
                     style={{backgroundImage: `linear-gradient(to right, ${primaryColor} 49.5%, ${secondaryColor} 49.5%`}}
                     className={css.pokeItem}>
                     <img src={props.sprite} alt={props.name}/>

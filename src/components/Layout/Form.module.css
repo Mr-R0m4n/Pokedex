@@ -15,17 +15,13 @@
     margin: 0 10px 0 0;
 }
 
-.search > label {
-    font-size: 20px;
-}
-
 .search > input {
     height: 40px;
-    width: 600px;
+    width: 850px;
     border: 1px solid black;
     border-radius: 10px;
     font-size: 16px;
-    margin-left: 10px;
+    background: #fff;
 }
 
 .search > button {
@@ -44,22 +40,9 @@
     background-color: #ccc;
 }
 
-.filter {
-    margin: 0 0 0 10px;
-}
-
-.filter > label {
-    font-size: 20px;
-}
-
-
-.filter > label:last-of-type {
-    margin-left: 10px;
-}
-
 .filter > select {
     height: 40px;
-    width: 200px;
+    width: 240px;
     border: 1px solid black;
     border-radius: 10px;
     font-size: 16px;
@@ -82,12 +65,22 @@
     }
 
     .search > input {
-        width: 605px;
+        width: 680px;
     }
 
-    .filter {
-        margin-left: 0;
+    .filter > select {
+        width: 335px;
+        margin: 0;
     }
+
+    .filter > select:first-of-type {
+        margin-right: 5px;
+    }
+
+    .filter > select:last-of-type {
+         margin-left: 5px;
+    }
+
 }
 
 @media (max-width: 740px) {
@@ -100,10 +93,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .search > label {
-        font-size: 14px;
     }
 
     .search > input {
@@ -120,14 +109,18 @@
         width: auto;
     }
 
-    .filter > label {
-        font-size: 14px;
-    }
-
     .filter > select {
         margin-bottom: 10px;
         font-size: 14px;
         width: 80vw;
         height: 30px;
+    }
+
+    .filter > select:first-of-type {
+        margin-right: 0;
+    }
+
+    .filter > select:last-of-type {
+        margin-left: 0;
     }
 }

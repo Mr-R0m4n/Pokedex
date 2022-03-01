@@ -3,6 +3,7 @@ import Header from './components/Layout/Header';
 import Main from './components/Layout/Main';
 import './App.css';
 import Form from "./components/Layout/Form";
+import PokeDetail from "./components/Pokemon/PokeDetail";
 
 function App() {
     const [pokemon, setPokemon] = useState([]);
@@ -10,6 +11,7 @@ function App() {
     const [pokemonSearch, setPokemonSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState();
+    const [modalShown, setModalShown] = useState(false);
 
     useEffect(() => {
         fetchPokemonData().catch((error) => {
@@ -65,10 +67,20 @@ function App() {
         setPokemonSearch(enteredSearch);
     };
 
+    const showModalHandler = () => {
+        setModalShown(true);
+    };
+
+    const hideModalHandler = () => {
+        setModalShown(false);
+    };
+
     return (
         <Fragment>
+            {modalShown && <PokeDetail hideModal={hideModalHandler}/>}
             <Header/>
             <Form
+                pokedata={pokemon}
                 getFilter={filter}
                 getKeyword={search}
             />
@@ -78,6 +90,7 @@ function App() {
                 keyword={pokemonSearch}
                 loading={isLoading}
                 error={httpError}
+                showModal={setModalShown}
             />
         </Fragment>
     );

@@ -2,13 +2,13 @@ import ReactDOM from "react-dom";
 
 import css from './Modal.module.css';
 
-const Backdrop = () => {
-    return <div className={css.backdrop}>{}</div>;
+const Backdrop = (props) => {
+    return <div onClick={props.hideModal} className={css.backdrop}>{}</div>;
 };
 
 const ModalOverlay = (props) => {
     return (
-        <div className={css.modal}>
+        <div onClick={props.hideModal} className={css.modal}>
             <div>{props.children}</div>
         </div>
     );
@@ -17,8 +17,8 @@ const ModalOverlay = (props) => {
 const Modal = (props) => {
     return (
         <>
-            {ReactDOM.createPortal(<Backdrop hideCart={props.hideCart}/>, document.getElementById("overlays"))}
-            {ReactDOM.createPortal(<ModalOverlay>{props.children}</ModalOverlay>, document.getElementById("overlays"))}
+            {ReactDOM.createPortal(<Backdrop hideModal={props.hideModal}/>, document.getElementById("overlays"))}
+            {ReactDOM.createPortal(<ModalOverlay hideModal={props.hideModal}>{props.children}</ModalOverlay>, document.getElementById("overlays"))}
         </>
     );
 };

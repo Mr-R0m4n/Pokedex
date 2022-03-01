@@ -31,7 +31,7 @@ const PokeList = (props) => {
                 });
 
         }
-        searchedPokemon = filteredPokemon.filter(pokemon => pokemon.name.includes(keyword));
+        searchedPokemon = filteredPokemon.filter(pokemon => pokemon.name.includes(keyword.toLowerCase()));
         setFilteredPokedata(searchedPokemon);
     };
 
@@ -45,6 +45,7 @@ const PokeList = (props) => {
                 weight={pokeItem.weight}
                 primaryType={(pokeItem.types.primary).charAt(0).toUpperCase() + (pokeItem.types.primary).slice(1)}
                 secondaryType={pokeItem.types.secondary === 'none' ? '' : (pokeItem.types.secondary).charAt(0).toUpperCase() + (pokeItem.types.secondary).slice(1)}
+                showModal={props.showModal}
             />
         );
     });

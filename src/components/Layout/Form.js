@@ -34,59 +34,36 @@ const Form = (props) => {
         setKeyword(event.target.value);
     };
 
+    const setOptions = (types) => {
+        const filteredTypes = types.filter(function (item, pos) {
+            return types.indexOf(item) === pos;
+        });
+        return filteredTypes.map(type => {
+            return <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>;
+        });
+    };
+    const primaryOptions = setOptions(props.pokedata.map(pokemon => pokemon.types.primary).sort());
+    const secondaryOptions = setOptions(props.pokedata.map(pokemon => pokemon.types.secondary).sort());
+
     return (
         <aside className={css.form}>
             <div className={css.search}>
-                <label>Search:</label>
-                <input onChange={searchHandler} name={'search'} type={'search'}/>
+                <input placeholder={'Search:'} onChange={searchHandler} name={'search'} type={'search'}/>
             </div>
             <div className={css.filter}>
-                <label>Primary Type:</label>
                 <select
                     value={filter.primary}
                     onChange={primaryFilterHandler}
                 >
-                    <option value={'all'}>All</option>
-                    <option value={'bug'}>Bug</option>
-                    <option value={'dragon'}>Dragon</option>
-                    <option value={'electric'}>Electric</option>
-                    <option value={'fairy'}>Fairy</option>
-                    <option value={'fighting'}>Fighting</option>
-                    <option value={'fire'}>Fire</option>
-                    <option value={'ghost'}>Ghost</option>
-                    <option value={'grass'}>Grass</option>
-                    <option value={'ground'}>Ground</option>
-                    <option value={'ice'}>Ice</option>
-                    <option value={'normal'}>Normal</option>
-                    <option value={'poison'}>Poison</option>
-                    <option value={'psychic'}>Psychic</option>
-                    <option value={'rock'}>Rock</option>
-                    <option value={'water'}>Water</option>
+                    <option value={'all'}>Primary Type</option>
+                    {primaryOptions}
                 </select>
-                <label>Secondary Type:</label>
                 <select
                     value={filter.secondary}
                     onChange={secondaryFilterHandler}
                 >
-                    <option value={'all'}>All</option>
-                    <option value={'none'}>None</option>
-                    <option value={'bug'}>Bug</option>
-                    <option value={'dragon'}>Dragon</option>
-                    <option value={'electric'}>Electric</option>
-                    <option value={'fairy'}>Fairy</option>
-                    <option value={'fighting'}>Fighting</option>
-                    <option value={'fire'}>Fire</option>
-                    <option value={'flying'}>Flying</option>
-                    <option value={'ghost'}>Ghost</option>
-                    <option value={'grass'}>Grass</option>
-                    <option value={'ground'}>Ground</option>
-                    <option value={'ice'}>Ice</option>
-                    <option value={'normal'}>Normal</option>
-                    <option value={'poison'}>Poison</option>
-                    <option value={'psychic'}>Psychic</option>
-                    <option value={'rock'}>Rock</option>
-                    <option value={'steel'}>Fairy</option>
-                    <option value={'water'}>Water</option>
+                    <option value={'all'}>Secondary Type</option>
+                    {secondaryOptions}
                 </select>
             </div>
         </aside>
