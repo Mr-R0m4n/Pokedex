@@ -7,7 +7,8 @@
     top: 80px;
     left: 0;
     right: 0;
-    background: #fff;
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
 }
 
 .search {
@@ -27,7 +28,7 @@
     margin-left: 10px;
 }
 
-.search >button {
+.search > button {
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -71,7 +72,7 @@
 }
 
 @media (max-width: 1450px) {
-    .form{
+    .form {
         flex-direction: column;
     }
 
@@ -84,7 +85,7 @@
         width: 605px;
     }
 
-    .filter{
+    .filter {
         margin-left: 0;
     }
 }
