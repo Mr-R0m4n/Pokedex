@@ -4,7 +4,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.detailCard h1 {
+    font-size: 2.2rem;
+}
+
+.detailCard h3 {
+    margin-right: 0.3rem;
 }
 
 .detailCard span {
@@ -13,21 +22,44 @@
     align-items: center;
 }
 
-.detailCard h2 {
-    margin: 0 10px;
+.sprite {
+    height: 300px;
 }
 
-.detailCard img {
-    height: 50%;
+.gameSprite {
+    height: 100px;
+}
+
+@media (max-width: 1920px) and (min-width: 1450px) {
+    .detailCard {
+        padding-top: 1rem;
+    }
+
+    .sprite {
+        height: 100px;
+    }
+
+    .gameSprite {
+        height: 50px;
+    }
 }
 
 @media (max-width: 1450px) {
+    .sprite {
+        height: 250px;
+    }
 
+    .gameSprite {
+        height: 100px;
+    }
 }
 
 @media (max-width: 740px) {
-    .detailCard img {
-        width: 80%;
-        height: auto;
+    .sprite {
+        height: 180px;
+    }
+
+    .gameSprite {
+        height: 200px;
     }
 }

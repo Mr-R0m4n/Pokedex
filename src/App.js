@@ -19,7 +19,7 @@ function App() {
 
     const fetchPokemonData = async () => {
         setIsLoading(true);
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=5');
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
         if (!response.ok) {
             setIsLoading(false);
             throw new Error('Oooops Something went wrong...');
@@ -37,7 +37,6 @@ function App() {
                 throw new Error('Oooops Something went wrong...');
             }
             const result = await detailResponse.json();
-            console.log(result);
 
             let data = {
                 id: result.id,
@@ -49,12 +48,6 @@ function App() {
                 types: {
                     primary: result.types[0].type.name,
                     secondary: !result.types[1] ? 'none' : result.types[1].type.name
-                },
-                abilities: {
-                    first: result.abilities[0].ability.name,
-                    second: !result.abilities[1] ? 'none' : result.abilities[1].ability.name,
-                    third: !result.abilities[2] ? 'none' : result.abilities[2].ability.name,
-                    fourth: !result.abilities[3] ? 'none' : result.abilities[3].ability.name
                 },
                 stats: {
                     hp: result.stats[0].base_stat,
@@ -69,7 +62,6 @@ function App() {
         }
         setIsLoading(false);
         setPokemon(pokeArray);
-        console.log(pokeArray);
     };
 
     const filter = (enteredFilter) => {

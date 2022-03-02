@@ -97,11 +97,11 @@ const PokeItem = (props) => {
         <li>
             {modalShown && <PokeDetail
                 hideModal={hideModalHandler}
-                sprite={props.sprite}
                 name={props.name}
                 style={{backgroundImage: `linear-gradient(to right, ${primaryColor} 49.5%, ${secondaryColor} 49.5%`}}
-                primaryType={props.primaryType}
-                secondaryType={props.secondaryType}
+                primary={props.primaryType}
+                secondary={props.secondaryType}
+                pokedata={props.pokedata}
             />}
             <Card>
                 <div
