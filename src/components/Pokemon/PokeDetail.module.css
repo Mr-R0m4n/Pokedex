@@ -23,43 +23,39 @@
 }
 
 .sprite {
-    height: 300px;
+    height: 35%;
 }
 
 .gameSprite {
-    height: 100px;
+    height: 10%;
 }
 
-@media (max-width: 1920px) and (min-width: 1450px) {
+@media (max-width: 1920px) {
     .detailCard {
         padding-top: 1rem;
     }
 
     .sprite {
-        height: 100px;
-    }
-
-    .gameSprite {
-        height: 50px;
+        height: 20%;
     }
 }
 
-@media (max-width: 1450px) {
+@media (max-width: 800px) {
+    .detailCard {
+        padding-top: 2rem;
+    }
+
     .sprite {
-        height: 250px;
+        height: 30%;
     }
 
     .gameSprite {
-        height: 100px;
+        height: 18%;
     }
 }
 
 @media (max-width: 740px) {
     .sprite {
-        height: 180px;
-    }
-
-    .gameSprite {
-        height: 200px;
+        height: 20%;
     }
 }
