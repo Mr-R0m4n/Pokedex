@@ -74,7 +74,10 @@ function App() {
 
     return (
         <Fragment>
-            <Header/>
+            <Header
+                loading={isLoading}
+                error={httpError}
+            />
             <Form
                 pokedata={pokemon}
                 getFilter={filter}

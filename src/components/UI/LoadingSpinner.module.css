@@ -1,19 +1,26 @@
+.loading {
+    position: fixed;
+    text-align: center;
+}
+
 .spinner {
     display: inline-block;
     width: 100px;
     height: 100px;
 }
+
 .spinner:after {
     content: ' ';
     display: block;
     width: 100px;
     height: 100px;
-    margin: 8px;
+    margin: 0 auto;
     border-radius: 50%;
     border: 6px solid coral;
     border-color: coral transparent coral transparent;
     animation: spinner 1.2s linear infinite;
 }
+
 @keyframes spinner {
     0% {
         transform: rotate(0deg);
@@ -21,4 +28,10 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.loading p {
+    margin-top: 50px;
+    font-weight: bolder;
+    color: coral;
 }

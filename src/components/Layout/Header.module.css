@@ -7,12 +7,41 @@
     top: 0;
     left: 0;
     width: 100vw;
+    display: flex;
+    justify-content: space-between;
 }
 
 .header > h1 {
     margin: 0;
     font-weight: bolder;
     font-size: 4rem;
+}
+
+.header > div {
+    display: flex;
+    align-items: center;
+}
+
+.blue {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: cyan;
+}
+
+.red {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: red;
+    margin: 0 20px;
+}
+
+.green {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: chartreuse;
 }
 
 @media (max-width: 740px) {
@@ -22,5 +51,21 @@
 
     .header > h1 {
         font-size: 2rem;
+    }
+
+    .blue {
+        width: 25px;
+        height: 25px;
+    }
+
+    .red {
+        width: 25px;
+        height: 25px;
+        margin: 0 15px;
+    }
+
+    .green {
+        width: 25px;
+        height: 25px;
     }
 }
