@@ -1,0 +1,33 @@
+.detailCard {
+    height: 100%;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.detailCard span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.detailCard h2 {
+    margin: 0 10px;
+}
+
+.detailCard img {
+    height: 50%;
+}
+
+@media (max-width: 1450px) {
+
+}
+
+@media (max-width: 740px) {
+    .detailCard img {
+        width: 80%;
+        height: auto;
+    }
+}

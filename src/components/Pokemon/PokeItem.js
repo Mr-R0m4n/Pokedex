@@ -2,10 +2,12 @@ import Card from "../UI/Card";
 
 import css from './PokeItem.module.css';
 import {useEffect, useState} from "react";
+import PokeDetail from "./PokeDetail";
 
 const PokeItem = (props) => {
     const [primaryColor, setPrimaryColor] = useState('#fff');
     const [secondaryColor, setSecondaryColor] = useState('#fff');
+    const [modalShown, setModalShown] = useState(false);
 
     useEffect(() => {
         const setColorHandler = (type, colorFunction) => {
@@ -70,30 +72,45 @@ const PokeItem = (props) => {
         setColorHandler(props.primaryType, setPrimaryColor);
     }, [primaryColor, props.primaryType, props.secondaryType]);
 
-    let typeOutput;
-
+    let showType;
     if (props.secondaryType.length > 0) {
-        typeOutput = <div>
+        showType = <div>
             <h2>{props.primaryType}</h2>
             <h2>/</h2>
             <h2>{props.secondaryType}</h2>
         </div>;
     } else {
-        typeOutput = <div>
+        showType = <div>
             <h2>{props.primaryType}</h2>
         </div>;
     }
 
+    const showModalHandler = () => {
+        setModalShown(true);
+    };
+
+    const hideModalHandler = () => {
+        setModalShown(false);
+    };
+
     return (
         <li>
+            {modalShown && <PokeDetail
+                hideModal={hideModalHandler}
+                sprite={props.sprite}
+                name={props.name}
+                style={{backgroundImage: `linear-gradient(to right, ${primaryColor} 49.5%, ${secondaryColor} 49.5%`}}
+                primaryType={props.primaryType}
+                secondaryType={props.secondaryType}
+            />}
             <Card>
                 <div
-                    onClick={props.showModal}
+                    onClick={showModalHandler}
                     style={{backgroundImage: `linear-gradient(to right, ${primaryColor} 49.5%, ${secondaryColor} 49.5%`}}
                     className={css.pokeItem}>
                     <img src={props.sprite} alt={props.name}/>
                     <h1>{props.name}</h1>
-                    {typeOutput}
+                    {showType}
                 </div>
             </Card>
         </li>

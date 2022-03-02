@@ -29,7 +29,7 @@ const Main = (props) => {
                 pokedata={props.pokedata}
                 filter={props.filter}
                 keyword={props.keyword}
-                showModal={props.showModal}
+                // showModal={props.showModal}
             />
         </main>
     );

@@ -3,7 +3,6 @@ import Header from './components/Layout/Header';
 import Main from './components/Layout/Main';
 import './App.css';
 import Form from "./components/Layout/Form";
-import PokeDetail from "./components/Pokemon/PokeDetail";
 
 function App() {
     const [pokemon, setPokemon] = useState([]);
@@ -11,7 +10,6 @@ function App() {
     const [pokemonSearch, setPokemonSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState();
-    const [modalShown, setModalShown] = useState(false);
 
     useEffect(() => {
         fetchPokemonData().catch((error) => {
@@ -21,7 +19,7 @@ function App() {
 
     const fetchPokemonData = async () => {
         setIsLoading(true);
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151');
+        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=5');
         if (!response.ok) {
             setIsLoading(false);
             throw new Error('Oooops Something went wrong...');
@@ -39,7 +37,7 @@ function App() {
                 throw new Error('Oooops Something went wrong...');
             }
             const result = await detailResponse.json();
-            //console.log(result);
+            console.log(result);
 
             let data = {
                 id: result.id,
@@ -47,16 +45,31 @@ function App() {
                 height: (result.height / 10),
                 weight: (result.weight / 10),
                 sprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${(+key) + 1}.svg`,
+                gameSprite: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${(+key) + 1}.png`,
                 types: {
                     primary: result.types[0].type.name,
                     secondary: !result.types[1] ? 'none' : result.types[1].type.name
+                },
+                abilities: {
+                    first: result.abilities[0].ability.name,
+                    second: !result.abilities[1] ? 'none' : result.abilities[1].ability.name,
+                    third: !result.abilities[2] ? 'none' : result.abilities[2].ability.name,
+                    fourth: !result.abilities[3] ? 'none' : result.abilities[3].ability.name
+                },
+                stats: {
+                    hp: result.stats[0].base_stat,
+                    attack: result.stats[1].base_stat,
+                    defense: result.stats[2].base_stat,
+                    specialAttack: result.stats[3].base_stat,
+                    specialDefense: result.stats[4].base_stat,
+                    speed: result.stats[5].base_stat,
                 }
             };
             pokeArray.push(data);
         }
         setIsLoading(false);
         setPokemon(pokeArray);
-        //console.log(pokeArray);
+        console.log(pokeArray);
     };
 
     const filter = (enteredFilter) => {
@@ -67,17 +80,8 @@ function App() {
         setPokemonSearch(enteredSearch);
     };
 
-    const showModalHandler = () => {
-        setModalShown(true);
-    };
-
-    const hideModalHandler = () => {
-        setModalShown(false);
-    };
-
     return (
         <Fragment>
-            {modalShown && <PokeDetail hideModal={hideModalHandler}/>}
             <Header/>
             <Form
                 pokedata={pokemon}
@@ -90,7 +94,6 @@ function App() {
                 keyword={pokemonSearch}
                 loading={isLoading}
                 error={httpError}
-                showModal={setModalShown}
             />
         </Fragment>
     );
