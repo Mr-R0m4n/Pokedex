@@ -6,13 +6,44 @@ const Form = (props) => {
         primary: 'all',
         secondary: 'all'
     });
-
     const [keyword, setKeyword] = useState('');
+    const [primaryOptions, setPrimaryOptions] = useState()
+    const [secondaryOptions, setSecondaryOptions] = useState()
 
     useEffect(() => {
         props.getFilter(filter);
         props.getKeyword(keyword);
     },);
+
+    useEffect(() => {
+        const getPrimaryOptions = (props.allTypes.map(type => {
+            if (type.secondary.match(filter.secondary) || filter.secondary === 'all') {
+                return type.primary;
+            } else
+                return null;
+        }));
+
+        const getSecondaryOptions = (props.allTypes.map(type => {
+            if (type.primary.match(filter.primary) || filter.primary === 'all') {
+                return type.secondary;
+            } else
+                return null;
+        }));
+
+        const setSelectionOptions = (options) => {
+            const reducedOptions = [...new Set(options.map(option => option))];
+
+            return reducedOptions.map(type => {
+                if (type !== null)
+                    return <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>;
+                else
+                    return null
+            });
+        }
+
+        setPrimaryOptions(setSelectionOptions(getPrimaryOptions))
+        setSecondaryOptions(setSelectionOptions(getSecondaryOptions))
+    },[filter])
 
     const primaryFilterHandler = (event) => {
         const selectedPrimaryFilter = event.target.value;
@@ -33,17 +64,6 @@ const Form = (props) => {
     const searchHandler = (event) => {
         setKeyword(event.target.value);
     };
-
-    const setOptions = (types) => {
-        const filteredTypes = types.filter(function (item, pos) {
-            return types.indexOf(item) === pos;
-        });
-        return filteredTypes.map(type => {
-            return <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>;
-        });
-    };
-    const primaryOptions = setOptions(props.pokedata.map(pokemon => pokemon.types.primary).sort());
-    const secondaryOptions = setOptions(props.pokedata.map(pokemon => pokemon.types.secondary).sort());
 
     return (
         <aside className={css.form}>

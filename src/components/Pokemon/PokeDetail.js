@@ -4,8 +4,6 @@ import css from './PokeDetail.module.css';
 
 const PokeDetail = (props) => {
 
-    console.log(props.pokedata)
-
     let showType;
     if (props.secondary.length > 0) {
         showType = <span>

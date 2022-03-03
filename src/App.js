@@ -8,6 +8,7 @@ function App() {
     const [pokemon, setPokemon] = useState([]);
     const [pokemonFilter, setPokemonFilter] = useState({});
     const [pokemonSearch, setPokemonSearch] = useState('');
+    const [types, setTypes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState();
 
@@ -16,6 +17,11 @@ function App() {
             setHttpError(error.message);
         });
     }, []);
+
+    useEffect(() => {
+        const allTypes = [...new Set(pokemon.map(pokemon => pokemon.types))];
+        setTypes(allTypes);
+    }, [pokemon]);
 
     const fetchPokemonData = async () => {
         setIsLoading(true);
@@ -80,6 +86,7 @@ function App() {
             />
             <Form
                 pokedata={pokemon}
+                allTypes={types}
                 getFilter={filter}
                 getKeyword={search}
             />
