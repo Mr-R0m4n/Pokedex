@@ -21,14 +21,14 @@ const Form = (props) => {
                 return type.primary;
             } else
                 return null;
-        }));
+        })).sort();
 
         const getSecondaryOptions = (props.allTypes.map(type => {
             if (type.primary.match(filter.primary) || filter.primary === 'all') {
                 return type.secondary;
             } else
                 return null;
-        }));
+        })).sort();
 
         const setSelectionOptions = (options) => {
             const reducedOptions = [...new Set(options.map(option => option))];
@@ -36,14 +36,12 @@ const Form = (props) => {
             return reducedOptions.map(type => {
                 if (type !== null)
                     return <option key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>;
-                else
-                    return null
             });
         }
 
         setPrimaryOptions(setSelectionOptions(getPrimaryOptions))
         setSecondaryOptions(setSelectionOptions(getSecondaryOptions))
-    },[filter])
+    },[props.allTypes, filter])
 
     const primaryFilterHandler = (event) => {
         const selectedPrimaryFilter = event.target.value;
