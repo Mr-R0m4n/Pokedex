@@ -29,9 +29,8 @@ const PokeList = (props) => {
                 pokemon => {
                     return JSON.stringify(pokemon.types) === JSON.stringify(pokemonFilter);
                 });
-
         }
-        searchedPokemon = filteredPokemon.filter(pokemon => pokemon.name.includes(keyword.toLowerCase()));
+        searchedPokemon = filteredPokemon.filter(pokemon => pokemon.name.match(RegExp(`^${keyword.toLowerCase()}`)));
         setFilteredPokedata(searchedPokemon);
     };
 
