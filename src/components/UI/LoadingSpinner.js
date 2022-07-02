@@ -27,7 +27,7 @@ const LoadingSpinner = () => {
             setTimeout(function () {
                 index++;
                 loadText(index);
-            }, 2000);
+            }, 3000);
         }
     };
 
